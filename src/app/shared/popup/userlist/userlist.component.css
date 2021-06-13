@@ -1,0 +1,40 @@
+.btn-space{
+    margin-right: 5px;
+}
+
+.btn-primary, .btn-danger{
+    padding: 2px 5px 2px 5px;
+    margin-bottom: 3px;    
+}
+
+.userlist-container{
+    top:20vh;
+    left: 20vw;
+    width: 60vw;
+    padding: 50px;
+    z-index: 100;
+    position: fixed;
+    background:white;
+    height: 50vh;
+    overflow-y: scroll;
+}
+
+.userlist-backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    background:rgba(0,0,0,0.75);
+}
+
+.userlist{
+    margin-top: 25px;
+}
+
+th,td{
+padding: 10px;
+border:solid 1px grey;
+}
+

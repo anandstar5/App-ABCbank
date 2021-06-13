@@ -1,0 +1,30 @@
+<div *ngIf="isAdminUser">
+    <div class="card-group">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;margin: 10px;">
+            <div class="card-header">Total Accounts</div>
+            <div class="card-body">
+                <h5 class="card-title" style="text-align: center;font-size:100px;">{{totalAccounts}}</h5>
+            </div>
+        </div>       
+    </div>
+</div>
+
+<div *ngIf="!isAdminUser">
+    <div *ngIf="isAccountExist" class="card-group">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;margin: 10px;">
+            <div class="card-header">Savings Account Balance</div>
+            <div class="card-body">
+                <h5 class="card-title" style="text-align: center;font-size:50px;">{{savingsbalance}}</h5>
+                <a [routerLink]="['/account',accountno]" style="float: right;color:white">Account Details</a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isAccountExist===false">
+        <div class="container" style="margin-top:30px">
+            <div class="col-xs-12">
+                <p class="alert alert-danger">No Savings Account Available. Please contact Administrator to Create..!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="jumbotron">
+    <hr>
+    <h3 style="padding-left: 20px;">Transaction History</h3>
+    <hr>
+</div>
+
+<div class="container" style="margin-top: 20px;">
+    <div class="row justify-content-center">
+        <div *ngIf="isStatementExist" class="col-xs-12 col-md-12" style="text-align: right;">
+            <i class="fa fa-download btn btn-primary" style="cursor: pointer;" (click)="onExport()"></i>
+        </div>
+        <div *ngIf="isStatementExist" class="col-xs-12 col-md-12">
+            <span class="help-block">
+                Please download to see all transactions.
+            </span>
+        </div>
+
+        <div class="col-xs-12 col-md-12">
+            <table class="table table-success table-striped" id="tblTransaction">
+                <thead>
+                    <tr>
+                        <th>Account Number</th>
+                        <th>Sender/Reciver</th>
+                        <th>Transaction Number</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Transaction Date</th>
+                        <th>Remark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="!isStatementExist">
+                        <td style="text-align: center;color: red;" colspan="7">
+                            No Data to Display..!
+                        </td>
+                    </tr>
+                    <ng-container *ngIf="isStatementExist">
+                        <ng-container *ngFor="let transaction of debitList;let i=index">
+                            <tr [ngStyle]="{display:i>2?'none':''}">
+                                <td>{{transaction.accountnumber}}</td>
+                                <td>{{transaction.payeeaccountnumber}}</td>
+                                <td>{{transaction.transactionnumber}}</td>
+                                <td>Debit</td>
+                                <td>{{transaction.transferAmount}}</td>
+                                <td>{{transaction.TransactionDate | date:'short'}}</td>
+                                <td>{{transaction.remark}}</td>
+                            </tr>
+                        </ng-container>
+                        <ng-container *ngFor="let transaction of creditList;let i=index">
+                            <tr [ngStyle]="{display:i>2?'none':''}">
+                                <td>{{transaction.payeeaccountnumber}}</td>
+                                <td>{{transaction.accountnumber}}</td>
+                                <td>{{transaction.transactionnumber}}</td>
+                                <td>Credit</td>
+                                <td>{{transaction.transferAmount}}</td>
+                                <td>{{transaction.TransactionDate | date:'short'}}</td>
+                                <td>{{transaction.remark}}</td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

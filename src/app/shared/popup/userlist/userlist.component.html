@@ -1,0 +1,28 @@
+<div class="userlist-backdrop" (click)="onCancel()"></div>
+
+<div class="userlist-container ">
+    <div class="user-search" style="text-align: center;">
+        <input type="text" class="btn-space" placeholder="Customer Name/ID" [(ngModel)]="filterValue">       
+        <button class="btn btn-danger " type="button" (click)="onCancel()">Cancel</button>
+    </div>
+
+    <div class="userlist" >
+        <table style="text-align: center;border: solid 1px grey;margin-left: auto;margin-right: auto;">
+            <thead>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th></th>
+            </thead>
+            <tbody *ngFor="let user of userList | filter:filterValue:'customername###customerid'">
+                <tr>
+                    <td>{{user.customerid}}</td>
+                    <td>{{user.customername}}</td>
+                    <td>
+                        <input type="radio" name="chooseCustomer" (click)="onSelect(user)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

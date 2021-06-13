@@ -1,0 +1,26 @@
+.btn-space{
+    margin-right: 10px;
+}
+
+.btn-group{
+    margin-top: 10px;    
+}
+
+.btn:focus {
+    outline: none !important;
+  }
+
+  .balance{
+    color: rgb(124, 133, 121);
+    font-style: italic;
+    font-size: small;
+    border: none;
+    padding: 0 0 0 5px;
+}
+
+.help-block{
+    color: red;
+    font-style: italic;
+    font-size: small;
+}
+

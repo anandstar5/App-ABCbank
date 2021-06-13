@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">ABC Retail Bank</a>
+        <div class="collapse navbar-collapse" *ngIf="isAuthenticate">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                        routerLink="home">Home</a>
+                </li>
+                <li class="nav-item" *ngIf="isAdmin">
+                    <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                        routerLink="account">Create Account</a>
+                </li>
+                <li class="nav-item" *ngIf="!isAdmin">
+                    <a class="nav-link" routerLinkActive="active" routerLink="account/fundtransfer">Fund Transfer</a>
+                </li>
+                <li class="nav-item" *ngIf="!isAdmin">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['account/summary',customerid]">Account
+                        Summary</a>
+                </li>
+            </ul>
+            <form appPageClick #searchForm="ngForm" class="d-flex" *ngIf="isAdmin" (ngSubmit)="onSearch(searchValue.value)">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search (Minimum 4 Letters)" title="Minimum 4 Letters" ngModel #searchValue
+                    name="search" required minlength="4">
+                <button class="btn btn-outline-success" [disabled]="!searchForm.valid">Search</button>
+            </form>
+            <div style="padding-left:10px;">
+                <a class="btn btn-danger" (click)="onLogout()">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,63 @@
+<div class="jumbotron">
+    <hr>
+    <h3 style="padding-left: 20px;">Account Summary</h3>
+    <hr>
+</div>
+
+<div class="container" style="margin-top: 20px;">
+    <div class="row justify-content-center">
+        <div class="col-xs-12 col-md-12">
+            <table class="table table-success table-striped">
+                <thead>
+                    <tr>
+                        <th>Account Number</th>
+                        <th>Account Type</th>
+                        <th>Account Owner</th>
+                        <th>Branch</th>
+                        <th>Balance</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="!isAccountsExist">
+                        <td style="text-align: center;color: red;" colspan="7">
+                            No Data to Display..!
+                        </td>
+                    </tr>
+                    <ng-container *ngIf="isAccountsExist">
+                        <tr *ngFor="let account of accountSummary">
+                            <td>
+                                {{account.accountnumber}}
+                            </td>
+                            <td>
+                                {{getAccountType(account.accounttype).replace("Account","")}}
+                            </td>
+                            <td>
+                                {{account.user.customername}}
+                            </td>
+                            <td>
+                                {{getBranchName(account.accountbranch)}}
+                            </td>
+                            <td>
+                                {{account.accountbalance}}
+                            </td>
+                            <td colspan="2">
+                                <i class="fa fa-edit" [routerLink]="['/account',account.accountnumber]"
+                                    style="margin-right:15px;font-size:20px;color: blue;cursor: pointer;">
+                                </i>
+                                <i class="fa fa-history" [routerLink]="['/account/statement',account.accountnumber]"
+                                    style="margin-right:15px;font-size:20px;color: rgb(0, 128, 128);cursor: pointer;">
+                                </i>
+                                <i *ngIf="isAdminUser" class="fa fa-trash-o" (click)="onDelete(account.accountnumber)"
+                                    style="font-size:20px;color: red;cursor: pointer;">
+                                </i>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<app-alert *ngIf="accountActionResponse" errorMessage="{{accountActionResponse}}" (close)="onAlertClose()"></app-alert>
