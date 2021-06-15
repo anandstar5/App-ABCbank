@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/App-ABCbank",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

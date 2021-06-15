@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { CommonService } from './shared/common.service';
 import { AppState } from './ztore/app.reducer';
@@ -16,10 +17,13 @@ export class AppComponent implements OnInit {
       this.isloading = response;
     });
 
-    this.store.dispatch(new AuthActions.AuthAutoLogin);
+    if (isPlatformBrowser(this.platformid)) {
+      this.store.dispatch(new AuthActions.AuthAutoLogin);
+    }
+
   }
 
-  constructor(private commonService: CommonService, private store: Store<AppState>) {
+  constructor(private commonService: CommonService, private store: Store<AppState>, @Inject(PLATFORM_ID) private platformid: any) {
 
   }
 }
